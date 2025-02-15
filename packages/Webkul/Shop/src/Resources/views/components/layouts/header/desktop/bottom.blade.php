@@ -297,16 +297,16 @@
 
                 <div {{-- top-[78px] --}}
                     class="pointer-events-none absolute  z-[1] max-h-[580px] w-max max-w-[1260px] translate-y-1 overflow-auto overflow-x-auto border border-b-0 border-l-0 border-r-0 border-t border-[#F3F3F3] bg-white p-5 opacity-0 shadow-[0_6px_6px_1px_rgba(0,0,0,.3)] transition duration-300 ease-out group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100 group-hover:duration-200 group-hover:ease-in ltr:-left-13 rtl:-right-9" {{-- p-9 ltr:-left-9 --}}
-                    style="top: 36px; max-height: 250px; overflow: scroll;"
+                    style="top: 170px; max-height: 250px; position: fixed; left: 20px; right: 20px; margin: auto; width: 100%;"
                     v-if="category.children.length"
                 >
-                    <div class="aigns flex1 justify-between gap-x-[70px]">
+                    <div class="aigns flex justify-between1 gap-x-[70px]">
                         <div
-                            class="grid w-full min-w-max max-w-[150px] flex-auto grid-cols-[1fr] content-start gap-1 mb-1 mt-1"
+                            class="grid w-full min-w-max max-w-[150px] flex-auto grid-cols-[1fr] content-start gap-2 mb-1 mt-1"
                             v-for="pairCategoryChildren in pairCategoryChildren(category)"
                         >
                             <template v-for="secondLevelCategory in pairCategoryChildren">
-                                <p class="font-medium text-navyBlue">
+                                <p class="font-medium text-navyBlue" style="display: block; font-size: 14px; text-decoration: none; color: #f43582; margin: 0 0 0 3.5%;">
                                     <a :href="secondLevelCategory.url">
                                         @{{ secondLevelCategory.name }}
                                     </a>
@@ -320,11 +320,13 @@
                                         class="text-sm font-medium text-zinc-500"
                                         v-for="thirdLevelCategory in secondLevelCategory.children"
                                     >
-                                        <a :href="thirdLevelCategory.url" style="margin-left: 10px;">
-                                            - @{{ thirdLevelCategory.name }}
+                                        <a :href="thirdLevelCategory.url" style="color: #282c3f;line-height: 23px !important; font-weight: 400; margin: 0 0 0 3.5%;">
+                                            @{{ thirdLevelCategory.name }}
                                         </a>
                                     </li>
                                 </ul>
+
+                                <div style="width: 140px; height: 1px; margin: 12px 0 0 0; background-color: #eaeaec;"></div>
                             </template>
                         </div>
                     </div>
@@ -363,8 +365,8 @@
 
                 pairCategoryChildren(category) {
                     return category.children.reduce((result, value, index, array) => {
-                        if (index % 1 === 0) {
-                            result.push(array.slice(index, index + 1));
+                        if (index % 2 === 0) {
+                            result.push(array.slice(index, index + 2));
                         }
                         console.log('result :: ', result);
                         return result;
