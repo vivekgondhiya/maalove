@@ -84,7 +84,7 @@
 
         <!-- News Letter subscription -->
         @if (core()->getConfigData('customer.settings.newsletter.subscription'))
-            <div class="grid gap-2.5">
+            <div class="grid gap-2.5 w-[30%]">
                 <p
                     class="max-w-[288px] text-3xl italic leading-[45px] text-navyBlue max-md:text-2xl max-sm:text-lg text-white"
                     role="heading"
