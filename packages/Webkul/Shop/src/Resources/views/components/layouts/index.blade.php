@@ -70,6 +70,16 @@
             href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap"
         >
 
+        <link
+            rel="preload"
+            href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+            as="style"
+        >
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+        >
+
         @stack('styles')
 
         <style>
@@ -98,7 +108,7 @@
             <x-shop::modal.confirm />
 
             <div class="home-offer" style="background-color: #00a3eb; ">
-                <h1 style="background-color: #00a3eb; color: #fff; padding: 2px; font-size: 18px;">Get UPTO 40% OFF on your 1st order SHOP NOW</h1>
+                <h1 style="background-color: #00a3eb; color: #fff; padding: 2px; font-size: 18px; text-align: center;">Get UPTO 40% OFF on your 1st order SHOP NOW</h1>
             </div>
 
             <!-- Page Header Blade Component -->

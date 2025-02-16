@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-    content: ["./src/Resources/**/*.blade.php", "./src/Resources/**/*.js"],
+    content: ["./src/Resources/**/*.blade.php", "./src/Resources/**/*.js", "./src/Resources/**/*.css"],
 
     theme: {
         container: {
@@ -38,6 +38,7 @@ module.exports = {
 
             fontFamily: {
                 poppins: ["Poppins"],
+                lato: ["Lato"],
                 dmserif: ["DM Serif Display"],
             },
         }
