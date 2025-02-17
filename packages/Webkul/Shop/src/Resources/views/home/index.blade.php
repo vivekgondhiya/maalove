@@ -141,10 +141,10 @@
 
                 $(window).scroll(function () {
                     // console.log($(window).scrollTop());
-                    
+
                     if ($(window).scrollTop() > 300) {
                         console.log('show');
-                        
+
                         $('#scrollToTopBtn').attr('style', 'display: block;');
                     } else {
                         console.log('hide');
@@ -155,7 +155,7 @@
                 $(document).on('click', '#scrollToTopBtn', function () {
                     $('html, body').animate({ scrollTop: 0 }, 800); // Smooth scroll to top
                 });
-            }); 
+            });
         </script>
     @endpush
 </x-shop::layouts>
