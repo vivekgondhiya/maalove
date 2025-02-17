@@ -21,6 +21,14 @@
     ]);
 @endphp
 
+
+<!-- Scroll to Top Button -->
+<button id="scrollToTopBtn" title="Go to top"><i class="fa-solid fa-arrow-up"></i></button>
+<a id="whatsappBtn" href="https://wa.me/{{ $whatsappNumber }}" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" alt="WhatsApp">
+</a>
+
+
 <footer class="mt-9 bg-lightOrange max-sm:mt-10">
     <div class="flex justify-between gap-x-6 gap-y-8 p-[60px] max-1060:flex-col-reverse max-md:gap-5 max-md:p-8 max-sm:px-4 max-sm:py-5">
         <!-- For Desktop View -->

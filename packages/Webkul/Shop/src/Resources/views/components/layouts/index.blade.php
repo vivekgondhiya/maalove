@@ -80,7 +80,72 @@
             href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
         >
 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
         @stack('styles')
+
+        <style>
+            #scrollToTopBtn {
+                display: none; /* Hidden by default */
+                position: fixed;
+                bottom: 20px;
+                right: 80px;
+                width: 50px;
+                height: 50px;
+                font-size: 18px;
+                /* background: rgb(244 53 130 / var(--tw-bg-opacity));
+                color: white;
+                border: none; */
+
+                background: #fff;
+                border: 1px solid #f43582;
+                color: #f43582;
+
+                border-radius: 50%;
+                cursor: pointer;
+                box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+                transition: opacity 0.3s, transform 0.3s;
+                z-index: 1;
+            }
+
+            #scrollToTopBtn:hover {
+                background: #f43582;
+                border: 1px solid #fff;
+                color: #fff;
+            }
+
+            #scrollToTopBtn.show {
+                display: block;
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            #scrollToTopBtn.hide {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            #whatsappBtn {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                z-index: 1000;
+                transition: transform 0.3s, opacity 0.3s;
+            }
+
+            #whatsappBtn img {
+                width: 100%;
+                height: 100%;
+                border-radius: 50%;
+                box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            }
+
+            #whatsappBtn:hover {
+                transform: scale(1.1);
+            }
+        </style>
 
         <style>
             {!! core()->getConfigData('general.content.custom_scripts.custom_css') !!}
@@ -159,5 +224,31 @@
         <script type="text/javascript">
             {!! core()->getConfigData('general.content.custom_scripts.custom_javascript') !!}
         </script>
+
+    <!-- Include jQuery from CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            var btn = $('#scrollToTopBtn');
+
+            $(window).scroll(function () {
+                // console.log($(window).scrollTop());
+
+                if ($(window).scrollTop() > 300) {
+                    console.log('show');
+
+                    $('#scrollToTopBtn').attr('style', 'display: block;');
+                } else {
+                    console.log('hide');
+                    $('#scrollToTopBtn').attr('style', '');
+                }
+            });
+
+            $(document).on('click', '#scrollToTopBtn', function () {
+                $('html, body').animate({ scrollTop: 0 }, 800); // Smooth scroll to top
+            });
+        });
+    </script>
     </body>
 </html>
