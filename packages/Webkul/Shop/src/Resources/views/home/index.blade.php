@@ -7,7 +7,7 @@
     <meta name="title" content="{{ $channel->home_seo['meta_title'] ?? '' }}" />
     <meta name="description" content="{{ $channel->home_seo['meta_description'] ?? '' }}" />
     <meta name="keywords" content="{{ $channel->home_seo['meta_keywords'] ?? '' }}" />
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 @endPush
 
@@ -70,7 +70,7 @@
 
     <!-- Scroll to Top Button -->
     <button id="scrollToTopBtn" title="Go to top"><i class="fa-solid fa-arrow-up"></i></button>
-    <a id="whatsappBtn" href="https://wa.me/1234567890" target="_blank">
+    <a id="whatsappBtn" href="https://wa.me/{{ $whatsappNumber }}" target="_blank">
         <img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" alt="WhatsApp">
     </a>
 

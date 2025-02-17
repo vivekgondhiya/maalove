@@ -40,6 +40,7 @@ class AccountController extends Controller
 
         $data = request()->only([
             'name',
+            'whatsapp_number',
             'email',
             'password',
             'password_confirmation',

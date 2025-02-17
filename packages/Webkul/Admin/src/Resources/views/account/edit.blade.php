@@ -76,7 +76,7 @@
                     </x-admin::form.control-group>
 
                     <!-- Email -->
-                    <x-admin::form.control-group class="!mb-0">
+                    <x-admin::form.control-group>
                         <x-admin::form.control-group.label class="required">
                             @lang('admin::app.account.edit.email')
                         </x-admin::form.control-group.label>
@@ -91,6 +91,24 @@
                         />
 
                         <x-admin::form.control-group.error control-name="email" />
+                    </x-admin::form.control-group>
+
+                    <!-- WhatsApp Number -->
+                    <x-admin::form.control-group class="!mb-0">
+                        <x-admin::form.control-group.label class="required">
+                            WhatsApp Number
+                        </x-admin::form.control-group.label>
+
+                        <x-admin::form.control-group.control
+                            type="text"
+                            name="whatsapp_number"
+                            id="whatsapp_number"
+                            rules="required"
+                            :value="old('whatsapp_number') ?: $user->whatsapp_number"
+                            placeholder="1234567890"
+                        />
+
+                        <x-admin::form.control-group.error control-name="whatsapp_number" />
                     </x-admin::form.control-group>
                 </div>
              </div>

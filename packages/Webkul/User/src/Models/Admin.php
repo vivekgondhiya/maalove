@@ -23,6 +23,7 @@ class Admin extends Authenticatable implements AdminContract
      */
     protected $fillable = [
         'name',
+        'whatsapp_number',
         'email',
         'password',
         'image',
