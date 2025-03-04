@@ -4,6 +4,7 @@ namespace Webkul\Shop\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use Webkul\Product\Helpers\Review;
+use Illuminate\Support\Facades\DB;
 
 class ProductResource extends JsonResource
 {
@@ -29,6 +30,7 @@ class ProductResource extends JsonResource
     public function toArray($request)
     {
         $productTypeInstance = $this->getTypeInstance();
+        $tablePrefix = DB::getTablePrefix();
 
         return [
             'id'          => $this->id,
@@ -55,6 +57,10 @@ class ProductResource extends JsonResource
             'reviews'     => [
                 'total'   => $this->reviewHelper->getTotalReviews($this),
             ],
+            'total_quantity' => DB::table($tablePrefix.'product_inventories')
+                                ->select(DB::raw('SUM(DISTINCT '.$tablePrefix.'product_inventories.qty) as quantity'))
+                                ->where('product_id', $this->id)
+                                ->first()?->quantity,
         ];
     }
 }

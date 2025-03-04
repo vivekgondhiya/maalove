@@ -92,7 +92,7 @@
 
         <!-- News Letter subscription -->
         @if (core()->getConfigData('customer.settings.newsletter.subscription'))
-            <div class="grid gap-2.5 w-[30%]">
+            <div class="grid gap-2.5 " style="min-width: 30%;">
                 <p
                     class="max-w-[288px] text-3xl italic leading-[45px] text-navyBlue max-md:text-2xl max-sm:text-lg text-white"
                     role="heading"
@@ -129,6 +129,18 @@
                             >
                                 @lang('shop::app.components.layouts.footer.subscribe')
                             </button>
+
+                            <div class="mt-5">
+                                <a href="javascript:void(0)" target="_blank" style="color: #fff; margin-left: 20px; border: 1px solid #fff; border-radius: 24px; padding: 5px 10px;">
+                                    <i class="fa-brands fa-facebook-f"></i>
+                                </a>
+                                <a href="javascript:void(0)" target="_blank" style="color: #fff; margin-left: 20px; border: 1px solid #fff; border-radius: 24px; padding: 5px 10px;">
+                                    <i class="fa-brands fa-instagram"></i>
+                                </a>
+                                <a href="javascript:void(0)" target="_blank" style="color: #fff; margin-left: 20px; border: 1px solid #fff; border-radius: 24px; padding: 5px 10px;">
+                                    <i class="fa-brands fa-youtube"></i>
+                                </a>
+                            </div>
                         </div>
                     </x-shop::form>
                 </div>

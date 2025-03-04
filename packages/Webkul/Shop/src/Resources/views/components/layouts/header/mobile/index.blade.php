@@ -28,7 +28,7 @@
                             <img
                                 src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}"
                                 alt="{{ config('app.name') }}"
-                                width="250"
+                                width="131"
                                 height="29"
                             >
                         </a>
@@ -88,7 +88,7 @@
                 <img
                     src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}"
                     alt="{{ config('app.name') }}"
-                    width="250"
+                    width="131"
                     height="29"
                 >
             </a>
@@ -101,14 +101,25 @@
             <div class="flex items-center gap-x-5 max-md:gap-x-4">
                 {!! view_render_event('bagisto.shop.components.layouts.header.mobile.compare.before') !!}
 
-                @if($showCompare)
+                {{-- @if($showCompare)
                     <a
                         href="{{ route('shop.compare.index') }}"
                         aria-label="@lang('shop::app.components.layouts.header.compare')"
                     >
                         <span class="icon-compare cursor-pointer text-2xl"></span>
                     </a>
-                @endif
+                @endif --}}
+
+                @auth('customer')
+                    @if($showWishlist)
+                        <a
+                            href="{{ route('shop.customers.account.wishlist.index') }}"
+                            aria-label="@lang('shop::app.components.layouts.header.wishlist')"
+                        >
+                            <span class="icon-heart cursor-pointer text-2xl"></span>
+                        </a>
+                    @endif
+                @endauth
 
                 {!! view_render_event('bagisto.shop.components.layouts.header.mobile.compare.after') !!}
 

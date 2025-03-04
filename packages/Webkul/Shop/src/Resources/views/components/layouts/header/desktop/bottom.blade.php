@@ -85,7 +85,7 @@
             {!! view_render_event('bagisto.shop.components.layouts.header.desktop.bottom.compare.before') !!}
 
             <!-- Compare -->
-            @if(core()->getConfigData('catalog.products.settings.compare_option'))
+            {{-- @if(core()->getConfigData('catalog.products.settings.compare_option'))
                 <a
                     href="{{ route('shop.compare.index') }}"
                     aria-label="@lang('shop::app.components.layouts.header.compare')"
@@ -95,7 +95,19 @@
                         role="presentation"
                     ></span>
                 </a>
-            @endif
+            @endif --}}
+
+            @auth('customer')
+                @if(core()->getConfigData('customer.settings.wishlist.wishlist_option'))
+                    <a
+                        href="{{ route('shop.customers.account.wishlist.index') }}"
+                        aria-label="@lang('shop::app.components.layouts.header.wishlist')"
+                    >
+                        <span class="icon-heart inline-block cursor-pointer text-2xl"
+                        role="presentation"></span>
+                    </a>
+                @endif
+            @endauth
 
             {!! view_render_event('bagisto.shop.components.layouts.header.desktop.bottom.compare.after') !!}
 
