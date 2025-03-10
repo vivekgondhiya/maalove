@@ -10,16 +10,17 @@
         {!! view_render_event('bagisto.shop.components.layouts.header.desktop.bottom.logo.before') !!}
 
         <a
-            href="{{ route('shop.home.index') }}"
-            aria-label="@lang('shop::app.components.layouts.header.bagisto')"
+        href="{{ route('shop.home.index') }}"
+        aria-label="@lang('shop::app.components.layouts.header.bagisto')"
         >
             <img
                 src="{{ core()->getCurrentChannel()->logo_url ?? bagisto_asset('images/logo.svg') }}"
                 width="250"
                 height="29"
                 alt="{{ config('app.name') }}"
-            >
-        </a>
+                >
+            </a>
+
 
         {!! view_render_event('bagisto.shop.components.layouts.header.desktop.bottom.logo.after') !!}
 
@@ -96,6 +97,12 @@
                     ></span>
                 </a>
             @endif --}}
+
+            <a href="{{ route('shop.home.contact_us') }}" aria-label="Store" >
+                {{-- <span class="icon-heart inline-block cursor-pointer text-2xl"
+                        role="presentation"></span> --}}
+                <i class="fa-solid fa-location-pin" style="color: #5b5b5b;"></i>
+            </a>
 
             @auth('customer')
                 @if(core()->getConfigData('customer.settings.wishlist.wishlist_option'))

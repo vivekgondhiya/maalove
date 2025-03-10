@@ -123,6 +123,10 @@
 		</div>
     </div>
 
+    <div class="container mt-8 max-1180:px-5 max-md:mt-6 max-md:px-4" id="store-locator">
+        {!! core()->getCurrentChannel()->google_map !!}
+    </div>
+
     @push('scripts')
         {!! Captcha::renderJS() !!}
     @endpush
