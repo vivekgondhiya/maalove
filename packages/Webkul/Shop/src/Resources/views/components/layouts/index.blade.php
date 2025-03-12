@@ -93,14 +93,9 @@
                 width: 50px;
                 height: 50px;
                 font-size: 18px;
-                /* background: rgb(244 53 130 / var(--tw-bg-opacity));
-                color: white;
-                border: none; */
-
                 background: #fff;
                 border: 1px solid #f43582;
                 color: #f43582;
-
                 border-radius: 50%;
                 cursor: pointer;
                 box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
@@ -131,7 +126,7 @@
                 right: 20px;
                 width: 50px;
                 height: 50px;
-                z-index: 1000;
+                z-index: 1;
                 transition: transform 0.3s, opacity 0.3s;
             }
 
@@ -144,6 +139,14 @@
 
             #whatsappBtn:hover {
                 transform: scale(1.1);
+            }
+
+            .mobile-header-categories {
+                padding-bottom: 13vh;
+            }
+
+            .z-index-1 {
+                z-index: 1;
             }
         </style>
 

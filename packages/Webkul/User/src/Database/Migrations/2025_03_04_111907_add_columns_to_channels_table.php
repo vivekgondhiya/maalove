@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::table('channels', function (Blueprint $table) {
             $table->text('google_map')->after('favicon')->nullable()->default(null);
+            $table->text('facebook')->after('google_map')->nullable()->default(null);
+            $table->text('instagram')->after('facebook')->nullable()->default(null);
+            $table->text('youtube')->after('instagram')->nullable()->default(null);
         });
     }
 
@@ -27,6 +30,9 @@ return new class extends Migration
     {
         Schema::table('channels', function (Blueprint $table) {
             $table->dropColumn('google_map');
+            $table->dropColumn('facebook');
+            $table->dropColumn('instagram');
+            $table->dropColumn('youtube');
         });
     }
 };

@@ -288,6 +288,57 @@
                             />
                         </x-admin::form.control-group>
                     </div>
+                    
+                    <div class="">
+                        <x-admin::form.control-group>
+                            <x-admin::form.control-group.label>
+                                Facebook URL
+                            </x-admin::form.control-group.label>
+
+                            <x-admin::form.control-group.control
+                                type="text"
+                                id="facebook"
+                                :name="'facebook'"
+                                :value="old($locale)['facebook'] ?? $channel->facebook"
+                                :label="'Facebook URL'"
+                                :placeholder="'https://www.facebook.com'"
+                            />
+                        </x-admin::form.control-group>
+                    </div>
+
+                    <div class="">
+                        <x-admin::form.control-group>
+                            <x-admin::form.control-group.label>
+                                Instagram URL
+                            </x-admin::form.control-group.label>
+
+                            <x-admin::form.control-group.control
+                                type="text"
+                                id="instagram"
+                                :name="'instagram'"
+                                :value="old($locale)['instagram'] ?? $channel->instagram"
+                                :label="'Instagram URL'"
+                                :placeholder="'https://www.instagram.com'"
+                            />
+                        </x-admin::form.control-group>
+                    </div>
+
+                    <div class="">
+                        <x-admin::form.control-group>
+                            <x-admin::form.control-group.label>
+                                YouTube URL
+                            </x-admin::form.control-group.label>
+
+                            <x-admin::form.control-group.control
+                                type="text"
+                                id="youtube"
+                                :name="'youtube'"
+                                :value="old($locale)['youtube'] ?? $channel->youtube"
+                                :label="'YouTube URL'"
+                                :placeholder="'https://www.youtube.com'"
+                            />
+                        </x-admin::form.control-group>
+                    </div>
                 </div>
 
                 {!! view_render_event('bagisto.admin.settings.channels.edit.card.design.after', ['channel' => $channel]) !!}

@@ -35,7 +35,10 @@ class Channel extends TranslatableModel implements ChannelContract
         'is_maintenance_on',
         'maintenance_mode_text',
         'allowed_ips',
-        'google_map'
+        'google_map',
+        'facebook',
+        'instagram',
+        'youtube',
     ];
 
     /**

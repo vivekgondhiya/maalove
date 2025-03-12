@@ -68,6 +68,9 @@ class ChannelController extends Controller
             'logo.*'                => 'nullable|mimes:bmp,jpeg,jpg,png,webp',
             'favicon.*'             => 'nullable|mimes:bmp,jpeg,jpg,png,webp,ico',
             'google_map'            => 'nullable',
+            'facebook'              => 'nullable',
+            'instagram'             => 'nullable',
+            'youtube'               => 'nullable',
 
             /* seo */
             'seo_title'             => 'required|string',
@@ -134,6 +137,9 @@ class ChannelController extends Controller
             'logo.*'                           => 'nullable|mimes:bmp,jpeg,jpg,png,webp',
             'favicon.*'                        => 'nullable|mimes:bmp,jpeg,jpg,png,webp,ico',
             'google_map'                       => 'nullable',
+            'facebook'                         => 'nullable',
+            'instagram'                        => 'nullable',
+            'youtube'                          => 'nullable',
 
             /* seo */
             $locale.'.seo_title'               => 'required|string',

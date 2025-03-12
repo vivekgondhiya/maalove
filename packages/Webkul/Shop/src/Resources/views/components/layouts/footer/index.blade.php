@@ -13,6 +13,10 @@
 @php
     $channel = core()->getCurrentChannel();
 
+    $facebook = core()->getCurrentChannel()->facebook;
+    $instagram = core()->getCurrentChannel()->instagram;
+    $youtube = core()->getCurrentChannel()->youtube;
+
     $customization = $themeCustomizationRepository->findOneWhere([
         'type'       => 'footer_links',
         'status'     => 1,
@@ -121,7 +125,7 @@
                                 placeholder="email@example.com"
                             />
 
-                            <x-shop::form.control-group.error control-name="email" />
+                            <x-shop::form.control-group.error class="text-white" control-name="email" />
 
                             <button
                                 type="submit"
@@ -131,13 +135,13 @@
                             </button>
 
                             <div class="mt-5">
-                                <a href="javascript:void(0)" target="_blank" style="color: #fff; margin-left: 20px; border: 1px solid #fff; border-radius: 24px; padding: 5px 10px;">
+                                <a href="{{ $facebook ?: 'javascript:void(0)' }}" target="_blank" style="color: #fff; margin-left: 20px; border: 1px solid #fff; border-radius: 24px; padding: 5px 10px;">
                                     <i class="fa-brands fa-facebook-f"></i>
                                 </a>
-                                <a href="javascript:void(0)" target="_blank" style="color: #fff; margin-left: 20px; border: 1px solid #fff; border-radius: 24px; padding: 5px 10px;">
+                                <a href="{{ $instagram ?: 'javascript:void(0)' }}" target="_blank" style="color: #fff; margin-left: 20px; border: 1px solid #fff; border-radius: 24px; padding: 5px 10px;">
                                     <i class="fa-brands fa-instagram"></i>
                                 </a>
-                                <a href="javascript:void(0)" target="_blank" style="color: #fff; margin-left: 20px; border: 1px solid #fff; border-radius: 24px; padding: 5px 10px;">
+                                <a href="{{ $youtube ?: 'javascript:void(0)' }}" target="_blank" style="color: #fff; margin-left: 20px; border: 1px solid #fff; border-radius: 24px; padding: 5px 10px;">
                                     <i class="fa-brands fa-youtube"></i>
                                 </a>
                             </div>
