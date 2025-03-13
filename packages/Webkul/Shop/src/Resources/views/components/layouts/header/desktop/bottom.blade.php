@@ -316,7 +316,7 @@
 
                 <div {{-- top-[78px] --}}
                     class="pointer-events-none absolute  z-[1] max-h-[580px] w-max max-w-[1260px] translate-y-1 overflow-auto overflow-x-auto border border-b-0 border-l-0 border-r-0 border-t border-[#F3F3F3] bg-white p-5 opacity-0 shadow-[0_6px_6px_1px_rgba(0,0,0,.3)] transition duration-300 ease-out group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100 group-hover:duration-200 group-hover:ease-in ltr:-left-13 rtl:-right-9" {{-- p-9 ltr:-left-9 --}}
-                    style="top: 170px; max-height: 250px; position: fixed; left: 20px; right: 20px; margin: auto; width: 100%;"
+                    style="top: 100%; max-height: 250px; position: absolute; left: 0; right: 0; margin: auto;"
                     v-if="category.children.length"
                 >
                     <div class="aigns flex justify-between1 gap-x-[70px]">

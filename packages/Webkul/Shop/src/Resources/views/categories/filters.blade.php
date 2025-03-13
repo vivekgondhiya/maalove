@@ -14,8 +14,9 @@
 
 <!-- Mobile Filters Navigation -->
 <div
-    class="fixed bottom-0 z-index-1 grid w-full max-w-full grid-cols-[1fr_auto_1fr] items-center justify-items-center border-t border-zinc-200 bg-white px-5 ltr:left-0 rtl:right-0"
+    class="fixed bottom-0 grid w-full max-w-full grid-cols-[1fr_auto_1fr] items-center justify-items-center border-t border-zinc-200 bg-white px-5 ltr:left-0 rtl:right-0"
     v-if="isMobile"
+    :class="isDrawerActive.filter ? 'z-10' : 'z-index-1'"
 >
     <!-- Filter Drawer -->
     <x-shop::drawer
@@ -262,6 +263,8 @@
                 this.getFilters();
 
                 this.setFilters();
+
+                this.applyPreviousFilters(); // Apply previously applied filters
             },
 
             methods: {
@@ -294,6 +297,13 @@
                     });
 
                     this.$emit('filter-applied', this.filters.applied);
+                },
+
+                applyPreviousFilters() {
+                    for (let filter in this.filters.applied) {
+                        let values = this.filters.applied[filter];
+                        this.applyFilter({ code: filter }, values);
+                    }
                 },
 
                 applyFilter(filter, values) {
