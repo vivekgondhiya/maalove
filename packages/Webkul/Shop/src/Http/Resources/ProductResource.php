@@ -57,7 +57,7 @@ class ProductResource extends JsonResource
             'reviews'     => [
                 'total'   => $this->reviewHelper->getTotalReviews($this),
             ],
-            'total_quantity' => DB::table($tablePrefix.'product_inventories')
+            'total_quantity' => DB::table('product_inventories')
                                 ->select(DB::raw('SUM(DISTINCT '.$tablePrefix.'product_inventories.qty) as quantity'))
                                 ->where('product_id', $this->id)
                                 ->first()?->quantity,
