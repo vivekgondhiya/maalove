@@ -136,7 +136,7 @@
                         },
 
                         default: {
-                            sort: '{{ $toolbar->getOrder([])['value'] }}',
+                            sort: localStorage.getItem('appliedSort') || '{{ $toolbar->getOrder($params ?? [])['value'] }}',
 
                             limit: '{{ $toolbar->getLimit([]) }}',
 
@@ -144,11 +144,11 @@
                         },
 
                         applied: {
-                            sort: '{{ $toolbar->getOrder($params ?? [])['value'] }}',
+                            sort: localStorage.getItem('appliedSort') || '{{ $toolbar->getOrder($params ?? [])['value'] }}',
 
-                            limit: '{{ $toolbar->getLimit($params ?? []) }}',
+                            limit: localStorage.getItem('appliedLimit') || '{{ $toolbar->getLimit($params ?? []) }}',
 
-                            mode: '{{ $toolbar->getMode($params ?? []) }}',
+                            mode: localStorage.getItem('appliedMode') || '{{ $toolbar->getMode($params ?? []) }}',
                         }
                     }
                 };
@@ -156,6 +156,7 @@
 
             mounted() {
                 this.setFilters();
+                this.applyFiltersOnLoad();
             },
 
             computed: {
@@ -167,28 +168,26 @@
             methods: {
                 apply(type, value) {
                     this.filters.applied[type] = value;
-
+                    localStorage.setItem('applied' + type.charAt(0).toUpperCase() + type.slice(1), value);
                     this.setFilters();
                 },
 
                 changeMode(value = 'grid') {
                     this.filters.applied['mode'] = value;
-
+                    localStorage.setItem('appliedMode', value);
                     this.setFilters();
                 },
 
                 setFilters() {
-                    let filters = {};
+                    this.$emit('filter-applied', this.filters.applied);
+                },
 
+                applyFiltersOnLoad() {
                     for (let key in this.filters.applied) {
                         if (this.filters.applied[key] != this.filters.default[key]) {
-                            filters[key] = this.filters.applied[key];
-                        } else {
-                            filters= this.filters.default;
+                            this.apply(key, this.filters.applied[key]);
                         }
                     }
-
-                    this.$emit('filter-applied', filters);
                 }
             },
         });
