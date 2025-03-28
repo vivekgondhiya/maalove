@@ -94,10 +94,13 @@ class CartController extends Controller
 
             return new JsonResource([
                 'data'    => new CartResource(Cart::getCart()),
+                'success' => true,
                 'message' => trans('admin::app.sales.orders.create.cart.success-add-to-cart'),
             ]);
         } catch (\Exception $exception) {
             return new JsonResource([
+                'data'    => new CartResource(Cart::getCart()),
+                'success' => false,
                 'message' => $exception->getMessage(),
             ]);
         }
@@ -140,10 +143,13 @@ class CartController extends Controller
 
             return new JsonResource([
                 'data'    => new CartResource(Cart::getCart()),
+                'success' => true,
                 'message' => trans('admin::app.sales.orders.create.cart.success-update'),
             ]);
         } catch (\Exception $exception) {
             return new JsonResource([
+                'data'    => new CartResource(Cart::getCart()),
+                'success' => false,
                 'message' => $exception->getMessage(),
             ]);
         }

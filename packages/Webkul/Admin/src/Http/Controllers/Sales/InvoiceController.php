@@ -9,6 +9,7 @@ use Webkul\Admin\Http\Controllers\Controller;
 use Webkul\Core\Traits\PDFHandler;
 use Webkul\Sales\Repositories\InvoiceRepository;
 use Webkul\Sales\Repositories\OrderRepository;
+use DB;
 
 class InvoiceController extends Controller
 {
@@ -122,10 +123,18 @@ class InvoiceController extends Controller
 
         $invoice->email = request()->input('email');
 
+        DB::table('orders')->where('id', $invoice->order_id)->update([
+            'temp_customer_email' => request()->input('email'),
+        ]);
+
         Event::dispatch('sales.invoice.send_duplicate_email', $invoice);
 
         session()->flash('success', trans('admin::app.sales.invoices.view.invoice-sent'));
 
+        DB::table('orders')->where('id', $invoice->order_id)->update([
+            'temp_customer_email' => '',
+        ]);
+        
         return redirect()->route('admin.sales.invoices.view', $invoice->id);
     }
 

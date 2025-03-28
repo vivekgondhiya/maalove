@@ -17,6 +17,9 @@ class OrderDataGrid extends DataGrid
      */
     public function prepareQueryBuilder()
     {
+        // Increase max execution time to 300 seconds (5 minutes)
+        set_time_limit(180);
+
         $queryBuilder = DB::table('orders')
             ->distinct()
             ->leftJoin('addresses as order_address_shipping', function ($leftJoin) {
@@ -34,16 +37,16 @@ class OrderDataGrid extends DataGrid
                 'orders.increment_id',
                 'orders.base_grand_total',
                 'orders.created_at',
-                'channel_name',
-                'channel_id',
-                'status',
-                'customer_email',
-                'orders.cart_id as items',
-                DB::raw('CONCAT('.DB::getTablePrefix().'orders.customer_first_name, " ", '.DB::getTablePrefix().'orders.customer_last_name) as full_name'),
-                DB::raw('CONCAT('.DB::getTablePrefix().'order_address_billing.city, ", ", '.DB::getTablePrefix().'order_address_billing.state,", ", '.DB::getTablePrefix().'order_address_billing.country) as location')
+                'orders.channel_name',
+                'orders.channel_id',
+                'orders.status',
+                'orders.customer_email',
+                DB::raw('CONCAT(orders.customer_first_name, " ", orders.customer_last_name) as full_name'),
+                DB::raw('CONCAT(order_address_billing.city, ", ", order_address_billing.state, ", ", order_address_billing.country) as location')
             );
 
-        $this->addFilter('full_name', DB::raw('CONCAT('.DB::getTablePrefix().'orders.customer_first_name, " ", '.DB::getTablePrefix().'orders.customer_last_name)'));
+        // Add filters for optimized query
+        $this->addFilter('full_name', DB::raw('CONCAT(orders.customer_first_name, " ", orders.customer_last_name)'));
         $this->addFilter('created_at', 'orders.created_at');
 
         return $queryBuilder;
@@ -147,7 +150,7 @@ class OrderDataGrid extends DataGrid
         ]);
 
         $this->addColumn([
-            'index'              => 'channel_id',
+            'index'              => 'channel_name',
             'label'              => trans('admin::app.sales.orders.index.datagrid.channel-name'),
             'type'               => 'string',
             'filterable'         => true,

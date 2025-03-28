@@ -21,11 +21,11 @@ class InvoicedNotification extends Mailable
      * Get the message envelope.
      */
     public function envelope(): Envelope
-    {
+    {   
         return new Envelope(
             to: [
                 new Address(
-                    $this->invoice->order->customer_email,
+                    !empty($this->invoice->order->temp_customer_email) ? $this->invoice->order->temp_customer_email : $this->invoice->order->customer_email,
                     $this->invoice->order->customer_full_name
                 ),
             ],

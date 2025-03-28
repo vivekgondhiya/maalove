@@ -479,7 +479,13 @@
                         .then(response => {
                             this.$emit('cart-item-updated', response.data.data);
 
-                            this.$emitter.emit('add-flash', { type: 'success', message: response.data.message });
+                            
+                            if(!response.data.success){
+                                this.$emitter.emit('add-flash', { type: 'error', message: response.data.message });
+                                location.reload();
+                            }else{
+                                this.$emitter.emit('add-flash', { type: 'success', message: response.data.message });
+                            }
 
                             this.isUpdating = false;
 

@@ -23,6 +23,8 @@ return new class extends Migration
 
             $table->decimal('shipping_amount_incl_tax', 12, 4)->default(0)->after('base_sub_total_incl_tax');
             $table->decimal('base_shipping_amount_incl_tax', 12, 4)->default(0)->after('shipping_amount_incl_tax');
+
+            $table->string('temp_customer_email')->nullable();
         });
 
         DB::table('orders')->update([
@@ -50,6 +52,7 @@ return new class extends Migration
 
             $table->dropColumn('shipping_amount_incl_tax');
             $table->dropColumn('base_shipping_amount_incl_tax');
+            $table->dropColumn('temp_customer_email');
         });
     }
 };

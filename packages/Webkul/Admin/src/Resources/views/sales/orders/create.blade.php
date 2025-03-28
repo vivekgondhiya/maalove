@@ -222,7 +222,12 @@
 
                                 this.cart = response.data.data;
 
-                                this.$emitter.emit('add-flash', { type: 'success', message: response.data.message });
+                                if(response.data.success){
+                                    this.$emitter.emit('add-flash', { type: 'success', message: response.data.message });
+                                } else {
+                                    this.$emitter.emit('add-flash', { type: 'error', message: response.data.message });
+                                }
+
                             })
                             .catch(error => {});
                     },

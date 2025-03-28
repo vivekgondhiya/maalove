@@ -214,7 +214,7 @@
                             type="text"
                             ::name="controlName + '.state'"
                             ::value="address.state"
-                            rules="{{ core()->isStateRequired() ? 'required' : '' }}"
+                            rules="{{ core()->isStateRequired() ? 'required|alpha|max:255|min:3' : 'alpha|max:255|min:3' }}"
                             :label="trans('admin::app.sales.orders.create.cart.address.state')"
                             :placeholder="trans('admin::app.sales.orders.create.cart.address.state')"
                         />
@@ -236,7 +236,7 @@
                     type="text"
                     ::name="controlName + '.city'"
                     ::value="address.city"
-                    rules="required"
+                    rules="required|alpha_spaces|max:255|min:2"
                     :label="trans('admin::app.sales.orders.create.cart.address.city')"
                     :placeholder="trans('admin::app.sales.orders.create.cart.address.city')"
                 />
@@ -256,7 +256,7 @@
                     type="text"
                     ::name="controlName + '.postcode'"
                     ::value="address.postcode"
-                    rules="{{ core()->isPostCodeRequired() ? 'required' : '' }}"
+                    rules="{{ core()->isPostCodeRequired() ? 'required|numeric|max:10|min:5' : 'numeric|max:10|min:5' }}"
                     :label="trans('admin::app.sales.orders.create.cart.address.postcode')"
                     :placeholder="trans('admin::app.sales.orders.create.cart.address.postcode')"
                 />
@@ -276,7 +276,7 @@
                     type="text"
                     ::name="controlName + '.phone'"
                     ::value="address.phone"
-                    rules="required|numeric"
+                    rules="required|numeric|min:10|max:15"
                     :label="trans('admin::app.sales.orders.create.cart.address.telephone')"
                     :placeholder="trans('admin::app.sales.orders.create.cart.address.telephone')"
                 />

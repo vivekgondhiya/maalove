@@ -339,9 +339,10 @@
                             </x-admin::form.control-group.label>
 
                             <x-admin::form.control-group.control
-                                type="text"
+                                type="number"
                                 name="position"
-                                rules="required|integer"
+                                min="1"
+                                rules="required|min_value:1"
                                 :value="old('position') ?: $category->position"
                                 :label="trans('admin::app.catalog.categories.edit.position')"
                                 :placeholder="trans('admin::app.catalog.categories.edit.enter-position')"

@@ -247,7 +247,7 @@
                                         id="refund[adjustment_refund]" 
                                         name="refund[adjustment_refund]"
                                         v-model="refund.adjustment_refund"
-                                        rules="required|min_value:0"
+                                        rules="required"
                                         :label="trans('admin::app.sales.refunds.create.adjustment-refund')"
                                     />
 
