@@ -369,7 +369,7 @@
                                             type="text"
                                             id="discount_amount"
                                             name="discount_amount"
-                                            rules="required"
+                                            rules="required|regex:^[0-9]+"
                                             :value="old('discount_amount') ?? $cartRule->discount_amount"
                                             :label="trans('admin::app.marketing.promotions.cart-rules.edit.discount-amount')"
                                             :placeholder="trans('admin::app.marketing.promotions.cart-rules.edit.discount-amount')"

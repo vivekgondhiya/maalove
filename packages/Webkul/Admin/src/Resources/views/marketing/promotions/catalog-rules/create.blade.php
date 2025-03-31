@@ -142,6 +142,7 @@
                             :key="index"
                             :index="index"
                             @onRemoveCondition="removeCondition($event)"
+                            @keydown.enter.prevent
                         >
                         </v-catalog-rule-condition-item>
 
@@ -543,7 +544,7 @@
                                         'price': 'regex:^[0-9]+(\.[0-9]+)?$',
                                         'decimal': 'regex:^[0-9]+(\.[0-9]+)?$',
                                         'integer': 'regex:^[0-9]+$',
-                                        'text': 'regex:^[-]?\\d+(\\.\\d+)?$'
+                                        'text': 'regex:^(?!\s*$)[a-zA-Z0-9\s]+$'
                                     }[ matchedAttribute.type ] || ''" 
                                     label="@lang('admin::app.marketing.promotions.catalog-rules.create.conditions')"
                                     v-model="condition.value"

@@ -114,7 +114,8 @@ class ExchangeRateController extends Controller
 
             session()->flash('success', trans('admin::app.settings.exchange-rates.index.update-success'));
         } catch (\Exception $e) {
-            session()->flash('error', $e->getMessage());
+            \Log::error('Error updating exchange rates: ' . $e->getMessage());
+            session()->flash('error','Something went wrong while updating exchange rates');
         }
 
         return redirect()->route('admin.settings.exchange_rates.index');
