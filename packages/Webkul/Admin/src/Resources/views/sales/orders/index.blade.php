@@ -295,6 +295,9 @@
                     },
 
                     search() {
+
+                        this.searchTerm = this.searchTerm.trim();
+
                         if (this.searchTerm.length <= 1) {
                             this.searchedCustomers = [];
 

@@ -49,6 +49,11 @@ class ForgetPasswordController extends Controller
                 session()->flash('success', trans('admin::app.users.forget-password.create.reset-link-sent'));
 
                 return redirect()->route('admin.forget_password.create');
+            } else if($response == Password::RESET_THROTTLED) {
+
+                session()->flash('error', 'Please wait before trying again.');
+
+                return redirect()->route('admin.forget_password.create');
             }
 
             return redirect()->route('admin.forget_password.create')

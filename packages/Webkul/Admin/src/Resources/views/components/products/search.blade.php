@@ -84,7 +84,7 @@
                             >
                                 <template v-if="! product.images.length">
                                     <img src="{{ bagisto_asset('images/product-placeholders/front.svg') }}">
-                                
+
                                     <p class="absolute bottom-1.5 w-full text-center text-[6px] font-semibold text-gray-400">
                                         @lang('admin::app.components.products.search.product-image')
                                     </p>
@@ -153,7 +153,7 @@
             props: {
                 addedProductIds: {
                     type: Array,
-                    default: []                    
+                    default: []
                 },
 
                 queryParams: {
@@ -190,6 +190,9 @@
                 },
 
                 search() {
+
+                    this.searchTerm = this.searchTerm.trim();
+
                     if (this.searchTerm.length <= 1) {
                         this.searchedProducts = [];
 
@@ -199,7 +202,7 @@
                     this.isSearching = true;
 
                     let self = this;
-                    
+
                     this.$axios.get("{{ route('admin.catalog.products.search') }}", {
                             params: {
                                 ...{query: this.searchTerm},

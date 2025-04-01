@@ -340,7 +340,7 @@ class ProductController extends Controller
 
         $params = [
             'index'      => $indexNames ?? null,
-            'name'       => request('query'),
+            'name'       => trim(request('query')),
             'sort'       => 'created_at',
             'order'      => 'desc',
             'channel_id' => $channelId,
