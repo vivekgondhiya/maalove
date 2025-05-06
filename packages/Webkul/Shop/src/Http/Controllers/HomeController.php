@@ -4,7 +4,9 @@ namespace Webkul\Shop\Http\Controllers;
 
 use Illuminate\Support\Facades\Mail;
 use Webkul\Shop\Http\Requests\ContactRequest;
+use Webkul\Shop\Http\Requests\ProductRegistrationRequest;
 use Webkul\Shop\Mail\ContactUs;
+use Webkul\Shop\Mail\ProductRegistration;
 use Webkul\Theme\Repositories\ThemeCustomizationRepository;
 
 class HomeController extends Controller
@@ -83,4 +85,33 @@ class HomeController extends Controller
 
         return back();
     }
+
+    public function productRegistration()
+    {
+        return view('shop::home.product-registration');
+    }
+
+    public function sendProductRegistrationMail(ProductRegistrationRequest $productRegistrationRequest)
+    {
+        try {
+            Mail::queue(new ProductRegistration($productRegistrationRequest->only([
+                'name',
+                'email',
+                'contact',
+                'product_name',
+                'date_of_purchase',
+                'pin_code',
+                'purchased_from',
+            ])));
+
+            session()->flash('success', 'Your request has been received successfully.');
+        } catch (\Exception $e) {
+            session()->flash('error', $e->getMessage());
+
+            report($e);
+        }
+
+        return back();
+    }
+
 }

@@ -39,6 +39,15 @@ Route::group(['middleware' => ['locale', 'theme', 'currency']], function () {
         ->name('shop.home.contact_us.send_mail')
         ->middleware('cacheResponse');
 
+
+    Route::get('product-registration', [HomeController::class, 'productRegistration'])
+    ->name('shop.home.product_registration')
+    ->middleware('cacheResponse');
+
+    Route::post('product-registration/send-mail', [HomeController::class, 'sendProductRegistrationMail'])
+        ->name('shop.home.product_registration.send_mail')
+        ->middleware('cacheResponse');
+
     /**
      * Store front search.
      */
