@@ -40,15 +40,16 @@
         <x-slot:header>
             <div class="flex items-center justify-between">
                 <p class="text-lg font-semibold">
-                    @lang('shop::app.categories.filters.filters')
+                    &nbsp;
+                    {{-- @lang('shop::app.categories.filters.filters') --}}
                 </p>
 
-                <p
+                {{-- <p
                     class="cursor-pointer text-sm font-medium ltr:mr-[50px] rtl:ml-[50px]"
                     @click="clearFilters('filter', '')"
                 >
                     @lang('shop::app.categories.filters.clear-all')
-                </p>
+                </p> --}}
             </div>
         </x-slot>
 
@@ -119,7 +120,7 @@
         <template v-else>
             <div class="panel-side journal-scroll grid max-h-[1320px] min-w-[342px] grid-cols-[1fr] overflow-y-auto overflow-x-hidden max-xl:min-w-[270px] md:max-w-[400px] md:ltr:pr-7 md:rtl:pl-7">
                 <!-- Filters Header Container -->
-                <div class="flex h-[50px] items-center justify-between border-b border-zinc-200 pb-2.5 max-md:hidden">
+                <div class="flex h-[50px] items-center justify-between border-b border-zinc-200 pb-2.5 max-md:hidden1">
                     <p class="text-lg font-semibold max-sm:font-medium">
                         @lang('shop::app.categories.filters.filters')
                     </p>
@@ -270,7 +271,7 @@
             methods: {
                 getFilters() {
                     this.$axios.get('{{ route("shop.api.categories.attributes") }}', {
-                            params: { 
+                            params: {
                                 category_id: "{{ isset($category) ? $category->id : ''  }}",
                             }
                         })

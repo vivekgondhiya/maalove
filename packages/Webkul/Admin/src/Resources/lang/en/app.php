@@ -4497,4 +4497,6 @@ return [
             'tracking-number'            => 'Tracking Number : :tracking_number',
         ],
     ],
+    'key-id'                      => 'Key Id',
+    'key-secret'                      => 'Key Secret',
 ];

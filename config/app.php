@@ -193,6 +193,10 @@ return [
         Maatwebsite\Excel\ExcelServiceProvider::class,
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
 
+       // Razorpay provider
+        Wontonee\Razorpay\Providers\RazorpayServiceProvider::class,
+
+
         /**
          * Application service providers.
          */

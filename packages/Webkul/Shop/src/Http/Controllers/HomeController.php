@@ -93,8 +93,7 @@ class HomeController extends Controller
 
     public function sendProductRegistrationMail(ProductRegistrationRequest $productRegistrationRequest)
     {
-        try {
-            Mail::queue(new ProductRegistration($productRegistrationRequest->only([
+        $requestArray = $productRegistrationRequest->only([
                 'name',
                 'email',
                 'contact',
@@ -102,7 +101,19 @@ class HomeController extends Controller
                 'date_of_purchase',
                 'pin_code',
                 'purchased_from',
-            ])));
+        ]);
+
+        if (request()->file('file') && request()->file('file')->isValid()) {
+
+            $requestArray['file_path'] = storage_path('app/public') . '/' . request()->file('file')->storeAs(
+                'locales',
+                time().'-'.request()->file('file')->getClientOriginalName()
+            );
+        }
+
+
+        try {
+            Mail::to($requestArray['email'])->send(new ProductRegistration($requestArray));
 
             session()->flash('success', 'Your request has been received successfully.');
         } catch (\Exception $e) {

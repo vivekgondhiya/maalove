@@ -33,6 +33,7 @@ class ProductRegistrationRequest extends FormRequest
             'date_of_purchase' => 'required',
             'pin_code' => 'required',
             'purchased_from' => 'required',
+            'file' => 'required',
         ]);
     }
 

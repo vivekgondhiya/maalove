@@ -5,6 +5,7 @@ namespace Webkul\Shop\Mail;
 use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
+use Illuminate\Mail\Mailables\Attachment;
 
 class ProductRegistration extends Mailable
 {
@@ -39,5 +40,21 @@ class ProductRegistration extends Mailable
         return new Content(
             view: 'shop::emails.product-registration',
         );
+    }
+
+    /**
+     * Get the attachments for the message.
+     *
+     * @return array
+     */
+    public function attachments(): array
+    {
+        if(isset($this->productRegistration['file_path'])) {
+            return [
+                Attachment::fromPath($this->productRegistration['file_path']),
+            ];
+        } else {
+            return  [];
+        }
     }
 }

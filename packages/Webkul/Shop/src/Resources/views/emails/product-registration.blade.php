@@ -61,19 +61,4 @@
             </tbody>
         </table>
     </div>
-
-        <p style="font-size: 16px;color: #384860;line-height: 24px;margin-bottom: 40px">
-            @lang('shop::app.emails.contact-us.to')
-
-            <a href="mailto:{{ $productRegistration['email'] }}">{{ $productRegistration['email'] }}</a>,
-
-            @lang('shop::app.emails.contact-us.reply-to-mail')
-
-            @if($productRegistration['contact'])
-                @lang('shop::app.emails.contact-us.reach-via-phone')
-
-                <a href="tel:{{ $productRegistration['contact'] }}">{{ $productRegistration['contact'] }}</a>.
-            @endif
-        </p>
-    </p>
 @endcomponent

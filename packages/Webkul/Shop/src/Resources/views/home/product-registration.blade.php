@@ -22,7 +22,8 @@
 
             <div class="mt-14 rounded max-sm:mt-8">
                 <!-- Contact Form -->
-                <x-shop::form :action="route('shop.home.product_registration.send_mail')">
+                <x-shop::form :action="route('shop.home.product_registration.send_mail')"
+                    enctype="multipart/form-data">
                     <!-- Name -->
                     <x-shop::form.control-group>
                         <x-shop::form.control-group.label class="required">
@@ -189,6 +190,24 @@
 
                         <x-shop::form.control-group.error control-name="purchased_from" />
                     </x-shop::form.control-group>
+
+                     <!-- Images Directory Path -->
+                    <x-admin::form.control-group>
+                        <x-admin::form.control-group.label>
+                            Upload Invoice/Proof of Purchase for Warranty Registration
+                        </x-admin::form.control-group.label>
+
+                        <x-admin::form.control-group.control
+                            type="file"
+                            name="file"
+                            rules="required"
+                            :label="'Upload Invoice/Proof of Purchase for Warranty Registration'"
+                            :aria-label="'Upload Invoice/Proof of Purchase for Warranty Registration'"
+                            aria-required="true"
+                        />
+
+                        <x-admin::form.control-group.error control-name="file" />
+                    </x-admin::form.control-group>
 
                     <!-- Re captcha -->
                     @if (core()->getConfigData('customer.captcha.credentials.status'))

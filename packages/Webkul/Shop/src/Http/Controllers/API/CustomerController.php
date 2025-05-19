@@ -6,9 +6,19 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Event;
 use Webkul\Shop\Http\Requests\Customer\LoginRequest;
+use Illuminate\Support\Facades\Mail;
+use Webkul\Shop\Mail\Customer\EmailVerificationNotification;
 
 class CustomerController extends APIController
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct(
+        protected CustomerRepository $customerRepository
+    ) {}
     /**
      * Login Customer
      *
@@ -34,6 +44,30 @@ class CustomerController extends APIController
             Cookie::queue(Cookie::make('enable-resend', 'true', 1));
 
             Cookie::queue(Cookie::make('email-for-resend', $request->get('email'), 1));
+
+            $email = $request->get('email');
+
+            $verificationData = [
+                'email' => $email,
+                'token' => md5(uniqid(rand(), true)),
+            ];
+
+            $customer = $this->customerRepository->findOneByField('email', $email);
+
+            $this->customerRepository->update(['token' => $verificationData['token']], $customer->id);
+
+            try {
+                Mail::queue(new EmailVerificationNotification($verificationData));
+
+                if (Cookie::has('enable-resend')) {
+                    \Cookie::queue(\Cookie::forget('enable-resend'));
+                }
+
+                if (Cookie::has('email-for-resend')) {
+                    \Cookie::queue(\Cookie::forget('email-for-resend'));
+                }
+            } catch (\Exception $e) {
+            }
 
             auth()->guard('customer')->logout();
 
