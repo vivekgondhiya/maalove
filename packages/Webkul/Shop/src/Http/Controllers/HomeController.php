@@ -113,7 +113,7 @@ class HomeController extends Controller
 
 
         try {
-            Mail::to($requestArray['email'])->send(new ProductRegistration($requestArray));
+            Mail::to(env('MAIL_FROM_ADDRESS', 'maalove@zohomail.in'))->send(new ProductRegistration($requestArray));
 
             session()->flash('success', 'Your request has been received successfully.');
         } catch (\Exception $e) {
